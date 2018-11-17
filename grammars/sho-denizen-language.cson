@@ -40,11 +40,6 @@
         'name': 'event.sho-denizen-language'
     },
     {
-#        # Marks all destructive commands AND inject and run
-#        'match': '(- (\\^|)queue clear|targets:)'
-#        'name': 'command.math.sho-denizen-language'
-    },
-    {
         # Mark '<def[val]>' and %value%
         'match': '(\\%.+?\\%|<def\\[[a-zA-Z0-9]+\\]>)'
         'name': 'variable.sho-denizen-language'
