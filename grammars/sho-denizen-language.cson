@@ -33,7 +33,7 @@
     }
     {
         # Mark all 'on EVENT:' statements, Overwrites variable highlighting
-        'match': '^\\s+(on \\b[a-z]\\w+:)'
+        'match': '^\\s+(on \\b[a-z 0-9]+:\\n)'
         'captures':
             '1':
                 'name': 'events.sho-denizen-language'
@@ -70,19 +70,66 @@
             '0':
                 'name': 'punctuation.definition.string.end.sho-denizen-language'
         'name': 'string.quoted.double.sho-denizen-language'
+        'patterns': [
+            {
+                # Marks tags inside a quotes
+                'begin': '<'
+                'beginCaptures':
+                    '0':
+                        'name': 'tags.sho-denizen-language'
+                'end': '>'
+                'endCaptures':
+                    '0':
+                        'name': 'tags.sho-denizen-language'
+                'name': 'customtags.sho-denizen-language'
+
+                # Marks text inside a tags
+                'patterns': [
+                    {
+                        # Marks '[' and ']' inside tags
+                        'begin': '\\['
+                        'beginCaptures':
+                            '0':
+                                'name': 'brackets.sho-denizen-language'
+                        'end': '\\]'
+                        'endCaptures':
+                            '0':
+                                'name': 'brackets.sho-denizen-language'
+                        'name': 'custombrackets.sho-denizen-language'
+
+                    }
+                ]
+            }
+        ]
     },
     {
         # Mark tags
-        'match': '(<)(.+)(>)'
-        'captures':
-            '1':
+        'begin': '<'
+        'beginCaptures':
+            '0':
                 'name': 'tags.sho-denizen-language'
-            '2':
-                'name': 'keyword.sho-denizen-language'
-            '3':
+        'end': '>'
+        'endCaptures':
+            '0':
                 'name': 'tags.sho-denizen-language'
-
         'name': 'customtags.sho-denizen-language'
+
+        # Marks text inside a tags
+        'patterns': [
+            {
+                # Marks '[' and ']' inside tags
+                'begin': '\\['
+                'beginCaptures':
+                    '0':
+                        'name': 'brackets.sho-denizen-language'
+                'end': '\\]'
+                'endCaptures':
+                    '0':
+                        'name': 'brackets.sho-denizen-language'
+                'name': 'custombrackets.sho-denizen-language'
+
+            }
+        ]
     }
     {
         # Else and Else If
