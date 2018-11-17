@@ -50,7 +50,7 @@
         'name': 'variable.sho-denizen-language'
     },
     {
-        # Mark all command keywords
+        # Mark all command keywords proceeded by -
         'match': '(- (\\^|)determine|- (\\^|)yaml id:|- (\\^|)execute|- (\\^|)give|- (\\^|)teleport|- (\\^|)flag|- (\\^|)finish|- (^|)fail|\\- (\\^|)log|- (\\^|)new|- (\\^|)zap|- (\\^|)queue|- (\\^|)narrate|-  (\\^|)adjust|- (\\^|)inventory|- (\\^|)debug|- (\\^|)engage|- (\\^|)disengage|- (\\^|)lookclose|- (\\^|)pose|- (\\^|)queue|- (\\^|)wait|- (\\^|)take|- (\\^|)inject|- (\\^|)run|- (\\^|)trigger|- (\\^|)define)'
         'name': 'command.core.denizen'
     },
