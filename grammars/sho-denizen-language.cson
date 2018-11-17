@@ -33,7 +33,7 @@
     }
     {
         # Mark all 'on EVENT:' statements, Overwrites variable highlighting
-        'match': '^\\s+(on \\b[a-z]\\w+:)'
+        'match': '^\\s+(on \\b[a-z 0-9]+:\\n)'
         'captures':
             '1':
                 'name': 'events.sho-denizen-language'
