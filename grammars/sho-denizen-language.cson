@@ -1,0 +1,105 @@
+'scopeName': 'source.sho-denizen-language'
+'name': 'Denizen Language'
+'fileTypes': ['yml', 'yaml']
+
+'patterns': [
+    {
+        # Mark script name
+        'match': '(^[^\\s#]\\w+):'
+        'name': 'scriptname.sho-denizen-language'
+    },
+    {
+        # Mark numbers
+        'match': '\\b(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))\\b'
+        'name': 'constant.numeric.sho-denizen-language'
+    },
+    {
+        # Mark all 'SOMETHING:' statements'
+        'match': '(\\bchat\\b|\\bclick\\b|\\binteract\\b|\\bdamage\\b|\\bproximity\\b) (\\b[a-zA-Z]+:)((\\w+)| (\\b\\w+\\b)|[\\w \'/]+|\\n)|(\\b[a-zA-Z]+:)((\\w+)| (\\b\\w+\\b)|[\\w \'/]+|\\n)|(\\s+([0-9]+:))'
+        'captures':
+            '1':
+                'name': 'run.sho-denizen-language'
+            '2':
+                'name': 'run.sho-denizen-language'
+            '6':
+                'name': 'run.sho-denizen-language'
+#            '8':
+#                'name': 'parameter.sho-denizen-language'
+#            '9':
+#                'name': 'parameter.sho-denizen-language'
+            '11':
+                'name': 'run.sho-denizen-language'
+        #'name': 'var.sho-denizen-language'
+    }
+    {
+        # Mark all 'on EVENT:' statements, Overwrites variable highlighting
+        'match': '^\\s+(on \\b[a-z]\\w+:)'
+        'captures':
+            '1':
+                'name': 'events.sho-denizen-language'
+        'name': 'event.sho-denizen-language'
+    },
+    {
+#        # Marks all destructive commands AND inject and run
+#        'match': '(- (\\^|)queue clear|targets:)'
+#        'name': 'command.math.sho-denizen-language'
+    },
+    {
+        # Mark '<def[val]>' and %value%
+        'match': '(\\%.+?\\%|<def\\[[a-zA-Z0-9]+\\]>)'
+        'name': 'variable.sho-denizen-language'
+    },
+    {
+        # Mark all command keywords
+        'match': '(- (\\^|)determine|- (\\^|)yaml id:|- (\\^|)execute|- (\\^|)give|- (\\^|)teleport|- (\\^|)flag|- (\\^|)finish|- (^|)fail|\\- (\\^|)log|- (\\^|)new|- (\\^|)zap|- (\\^|)queue|- (\\^|)narrate|-  (\\^|)adjust|- (\\^|)inventory|- (\\^|)debug|- (\\^|)engage|- (\\^|)disengage|- (\\^|)lookclose|- (\\^|)pose|- (\\^|)queue|- (\\^|)wait|- (\\^|)take|- (\\^|)inject|- (\\^|)run|- (\\^|)trigger|- (\\^|)define)'
+        'name': 'command.core.denizen'
+    },
+    {
+        # Mark yaml
+        'match': '(\\- (\\^|)yaml create id:|\\- (\\^|)yaml|\\id:)'
+        'name': 'command.yaml.create.denizen'
+    },
+    {
+        # Mark Strings (double quote)
+        'begin': '\"'
+        'beginCaptures':
+            '0':
+                'name': 'punctuation.definition.string.begin.sho-denizen-language'
+        'end': '\"'
+        'endCaptures':
+            '0':
+                'name': 'punctuation.definition.string.end.sho-denizen-language'
+        'name': 'string.quoted.double.sho-denizen-language'
+    },
+    {
+        # Mark tags
+        'match': '(<)(.+)(>)'
+        'captures':
+            '1':
+                'name': 'tags.sho-denizen-language'
+            '2':
+                'name': 'keyword.sho-denizen-language'
+            '3':
+                'name': 'tags.sho-denizen-language'
+
+        'name': 'customtags.sho-denizen-language'
+    }
+    {
+        # Else and Else If
+        'match': '(\\} else {|\\} else if )'
+        'name': 'statement.else.denizen'
+    },
+    {
+        # If, foreach, random and all logical operators
+        'match': '(- (\\^|)if|- (\\^|)repeat|- (\\^|)random|\\=\\=|\\!\\=|\\&\\&|\\|\\||\\&gt;\\s|\\&lt;\\s|\\{|\\}|- (\\^|)foreach)'
+        'name': 'statement.if.denizen'
+    },
+    {
+        # Mark # line comments
+        'match': '^.*(#.*)'
+        'captures':
+            '1':
+                'name': 'comment.line.number-sign.sho-denizen-language'
+        'name': 'customcomment.sho-denizen-language'
+    }
+]

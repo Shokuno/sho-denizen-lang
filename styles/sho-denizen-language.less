@@ -1,0 +1,94 @@
+// The ui-variables file is provided by base themes provided by Atom.
+//
+// See https://github.com/atom/atom-dark-ui/blob/master/styles/ui-variables.less
+// for a full listing of what's available.
+//@import "ui-variables";
+:host, atom-text-editor, atom-text-editor.editor {
+  atom-text-editor .highlight.highlight-selected .region {
+    position: absolute;
+    pointer-events: none;
+    z-index: -1;
+  }
+  .syntax--header {
+      color: hsl(286, 60%, 67%);
+  }
+
+  /* is used for the title of a script */
+  .syntax--scriptname {
+      background-color: blue;
+      color: white;
+      font-weight: bold;
+  }
+
+  .syntax--tabulator {
+    background-color: hsl(355, 65%, 65%);
+  }
+
+  /* .events is used for all 'on EVENT:' type sstatements */
+  .syntax--events {
+    color: hsl(225, 89%, 48%);
+  }
+
+  /* .tags is used for the tag marks themselves, ie: < and > */
+  .syntax--tags {
+    color: hsl(187, 47%, 55%);
+  }
+
+  .syntax--brackets {
+    color: hsl( 29, 54%, 61%);
+  }
+  .syntax--injections {
+    color: hsl( 95, 38%, 62%);
+  }
+
+  /* .math is used for all destructive commands */
+  .syntax--math {
+    color: hsl(348, 78%, 58%);
+  }
+
+  /* .keyword is used for things in tags */
+  .syntax--keyword {
+    color: hsl(76, 80%, 69%);
+  }
+
+  /* is used for the define command */
+  .syntax--define {
+    color: hsl(177, 81%, 52%);
+  }
+
+  /* .variable is used for all defined variables */
+  .syntax--variable {
+    color: hsl(207, 81%, 69%);
+  }
+
+  /* .core is used for all the normal commands */
+  .syntax--core {
+    color: hsl(286, 60%, 67%);
+  }
+
+  /* .run is used for all 'SOMETHING:' statements except for 'on EVENT:' */
+  .syntax--run {
+    color: hsl(131, 65%, 58%);
+  }
+
+  .syntax--yaml.create {
+    color: hsl(329, 86%, 77%);
+  }
+
+  .syntax--else {
+    color: hsl( 29, 54%, 61%);
+  }
+  .syntax--if {
+    color: hsl( 29, 54%, 61%);
+  }
+
+  /* .quoted is used for thing sin double quotes */
+  .syntax--quoted {
+    color: hsl( 39, 67%, 69%);
+  }
+
+  /* .parameter is used for thing s behind a 'variable:' statement */
+  .syntax--parameter {
+    color: hsl(94, 75%, 60%);
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "sho-denizen-language",
+  "version": "0.0.0",
+  "description": "My personal highligting for the denizen language",
+  "engines": {
+    "atom": "*"
+  },
+  "dependencies": {},
+  "repository": {},
+  "bugs": {},
+  "license": "MIT"
+}
