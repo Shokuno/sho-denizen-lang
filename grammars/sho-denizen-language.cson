@@ -15,7 +15,7 @@
     },
     {
         # Mark all 'SOMETHING:' statements'
-        'match': '(\\bchat\\b|\\bclick\\b|\\binteract\\b|\\bdamage\\b|\\bproximity\\b) (\\b[a-zA-Z]+:)((\\w+)| (\\b\\w+\\b)|[\\w \'/]+|\\n)|(\\b[a-zA-Z]+:)((\\w+)| (\\b\\w+\\b)|[\\w \'/]+|\\n)|(\\s+([0-9]+:))'
+        'match': '(\\bchat\\b|\\bclick\\b|\\binteract\\b|\\bdamage\\b|\\bproximity\\b) (\\btrigger:)((\\w+)| (\\b\\w+\\b)|[\\w \'/]+|\\n)|(\\b[a-zA-Z]+:)((\\w+)| (\\b\\w+\\b)|[\\w \'/]+|\\n)|(\\s+([0-9]+:))'
         'captures':
             '1':
                 'name': 'run.sho-denizen-language'
@@ -23,13 +23,8 @@
                 'name': 'run.sho-denizen-language'
             '6':
                 'name': 'run.sho-denizen-language'
-#            '8':
-#                'name': 'parameter.sho-denizen-language'
-#            '9':
-#                'name': 'parameter.sho-denizen-language'
             '11':
                 'name': 'run.sho-denizen-language'
-        #'name': 'var.sho-denizen-language'
     }
     {
         # Mark all 'on EVENT:' statements, Overwrites variable highlighting
@@ -40,17 +35,12 @@
         'name': 'event.sho-denizen-language'
     },
     {
-#        # Marks all destructive commands AND inject and run
-#        'match': '(- (\\^|)queue clear|targets:)'
-#        'name': 'command.math.sho-denizen-language'
-    },
-    {
         # Mark '<def[val]>' and %value%
         'match': '(\\%.+?\\%|<def\\[[a-zA-Z0-9]+\\]>)'
         'name': 'variable.sho-denizen-language'
     },
     {
-        # Mark all command keywords
+        # Mark all command keywords proceeded by -
         'match': '(- (\\^|)determine|- (\\^|)yaml id:|- (\\^|)execute|- (\\^|)give|- (\\^|)teleport|- (\\^|)flag|- (\\^|)finish|- (^|)fail|\\- (\\^|)log|- (\\^|)new|- (\\^|)zap|- (\\^|)queue|- (\\^|)narrate|-  (\\^|)adjust|- (\\^|)inventory|- (\\^|)debug|- (\\^|)engage|- (\\^|)disengage|- (\\^|)lookclose|- (\\^|)pose|- (\\^|)queue|- (\\^|)wait|- (\\^|)take|- (\\^|)inject|- (\\^|)run|- (\\^|)trigger|- (\\^|)define)'
         'name': 'command.core.denizen'
     },
@@ -72,7 +62,12 @@
         'name': 'string.quoted.double.sho-denizen-language'
         'patterns': [
             {
-                # Marks tags inside a quotes
+                # Mark '<def[val]>' and %value%
+                'match': '(\\%.+?\\%|<def\\[[a-zA-Z0-9]+\\]>)'
+                'name': 'variable.sho-denizen-language'
+            },
+            {
+                # Marks tags inside quotes
                 'begin': '<'
                 'beginCaptures':
                     '0':
@@ -81,9 +76,11 @@
                 'endCaptures':
                     '0':
                         'name': 'tags.sho-denizen-language'
-                'name': 'customtags.sho-denizen-language'
 
-                # Marks text inside a tags
+                # sets the color of code inside the tags to grey
+                'name': 'raw.sho-denizen-language'
+
+                # Marks text inside tags
                 'patterns': [
                     {
                         # Marks '[' and ']' inside tags
@@ -96,7 +93,6 @@
                             '0':
                                 'name': 'brackets.sho-denizen-language'
                         'name': 'custombrackets.sho-denizen-language'
-
                     }
                 ]
             }
@@ -114,7 +110,7 @@
                 'name': 'tags.sho-denizen-language'
         'name': 'customtags.sho-denizen-language'
 
-        # Marks text inside a tags
+        # Marks text inside tags
         'patterns': [
             {
                 # Marks '[' and ']' inside tags
@@ -127,10 +123,10 @@
                     '0':
                         'name': 'brackets.sho-denizen-language'
                 'name': 'custombrackets.sho-denizen-language'
-
             }
         ]
     }
+
     {
         # Else and Else If
         'match': '(\\} else {|\\} else if )'
@@ -138,7 +134,7 @@
     },
     {
         # If, foreach, random and all logical operators
-        'match': '(- (\\^|)if|- (\\^|)repeat|- (\\^|)random|\\=\\=|\\!\\=|\\&\\&|\\|\\||\\&gt;\\s|\\&lt;\\s|\\{|\\}|- (\\^|)foreach)'
+        'match': '(- (\\^|)if|- (\\^|)while|- (\\^|)repeat|- (\\^|)random|\\=\\=|\\!\\=|\\&\\&|\\|\\||\\&gt;\\s|\\&lt;\\s|\\{|\\}|- (\\^|)foreach)'
         'name': 'statement.if.denizen'
     },
     {
