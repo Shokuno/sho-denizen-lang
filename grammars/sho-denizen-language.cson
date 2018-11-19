@@ -62,7 +62,7 @@
         'name': 'string.quoted.double.sho-denizen-language'
         'patterns': [
             {
-                # Marks tags inside a quotes
+                # Marks tags inside quotes
                 'begin': '<'
                 'beginCaptures':
                     '0':
@@ -71,9 +71,11 @@
                 'endCaptures':
                     '0':
                         'name': 'tags.sho-denizen-language'
-                'name': 'customtags.sho-denizen-language'
 
-                # Marks text inside a tags
+                # sets the color of code inside the tags to grey
+                'name': 'raw.sho-denizen-language'
+
+                # Marks text inside tags
                 'patterns': [
                     {
                         # Marks '[' and ']' inside tags
@@ -86,7 +88,6 @@
                             '0':
                                 'name': 'brackets.sho-denizen-language'
                         'name': 'custombrackets.sho-denizen-language'
-
                     }
                 ]
             }
@@ -104,7 +105,7 @@
                 'name': 'tags.sho-denizen-language'
         'name': 'customtags.sho-denizen-language'
 
-        # Marks text inside a tags
+        # Marks text inside tags
         'patterns': [
             {
                 # Marks '[' and ']' inside tags
@@ -117,10 +118,10 @@
                     '0':
                         'name': 'brackets.sho-denizen-language'
                 'name': 'custombrackets.sho-denizen-language'
-
             }
         ]
     }
+
     {
         # Else and Else If
         'match': '(\\} else {|\\} else if )'
