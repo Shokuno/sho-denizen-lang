@@ -134,7 +134,7 @@
     },
     {
         # If, foreach, random and all logical operators
-        'match': '(- (\\^|)if|- (\\^|)repeat|- (\\^|)random|\\=\\=|\\!\\=|\\&\\&|\\|\\||\\&gt;\\s|\\&lt;\\s|\\{|\\}|- (\\^|)foreach)'
+        'match': '(- (\\^|)if|- (\\^|)while|- (\\^|)repeat|- (\\^|)random|\\=\\=|\\!\\=|\\&\\&|\\|\\||\\&gt;\\s|\\&lt;\\s|\\{|\\}|- (\\^|)foreach)'
         'name': 'statement.if.denizen'
     },
     {
