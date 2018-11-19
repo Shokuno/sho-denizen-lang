@@ -15,7 +15,6 @@
     },
     {
         # Mark all 'SOMETHING:' statements'
-#        'match': '(\\bchat\\b|\\bclick\\b|\\binteract\\b|\\bdamage\\b|\\bproximity\\b) (\\b[a-zA-Z]+:)((\\w+)| (\\b\\w+\\b)|[\\w \'/]+|\\n)|(\\b[a-zA-Z]+:)((\\w+)| (\\b\\w+\\b)|[\\w \'/]+|\\n)|(\\s+([0-9]+:))'
         'match': '(\\bchat\\b|\\bclick\\b|\\binteract\\b|\\bdamage\\b|\\bproximity\\b) (\\btrigger:)((\\w+)| (\\b\\w+\\b)|[\\w \'/]+|\\n)|(\\b[a-zA-Z]+:)((\\w+)| (\\b\\w+\\b)|[\\w \'/]+|\\n)|(\\s+([0-9]+:))'
         'captures':
             '1':
@@ -24,13 +23,8 @@
                 'name': 'run.sho-denizen-language'
             '6':
                 'name': 'run.sho-denizen-language'
-#            '8':
-#                'name': 'parameter.sho-denizen-language'
-#            '9':
-#                'name': 'parameter.sho-denizen-language'
             '11':
                 'name': 'run.sho-denizen-language'
-        #'name': 'var.sho-denizen-language'
     }
     {
         # Mark all 'on EVENT:' statements, Overwrites variable highlighting
