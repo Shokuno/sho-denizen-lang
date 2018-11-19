@@ -62,6 +62,11 @@
         'name': 'string.quoted.double.sho-denizen-language'
         'patterns': [
             {
+                # Mark '<def[val]>' and %value%
+                'match': '(\\%.+?\\%|<def\\[[a-zA-Z0-9]+\\]>)'
+                'name': 'variable.sho-denizen-language'
+            },
+            {
                 # Marks tags inside quotes
                 'begin': '<'
                 'beginCaptures':
