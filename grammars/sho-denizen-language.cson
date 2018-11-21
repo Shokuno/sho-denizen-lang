@@ -120,13 +120,13 @@
             },
             {
                 # Marks '[' and ']' inside tags
-                'include': '#brackets_rule'
+                'include': '#square_brackets_rule'
             }
         ]
     }
-    
+
     # Mark square brackets
-    'brackets_rule': {
+    'square_brackets_rule': {
         'begin': '\\['
         'beginCaptures':
             '0':
