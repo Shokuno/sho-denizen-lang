@@ -68,65 +68,14 @@
             },
             {
                 # Marks tags inside quotes
-                'begin': '<'
-                'beginCaptures':
-                    '0':
-                        'name': 'tags.sho-denizen-language'
-                'end': '>'
-                'endCaptures':
-                    '0':
-                        'name': 'tags.sho-denizen-language'
-
-                # sets the color of code inside the tags to grey
-                'name': 'raw.sho-denizen-language'
-
-                # Marks text inside tags
-                'patterns': [
-                    {
-                        # Marks '[' and ']' inside tags
-                        'begin': '\\['
-                        'beginCaptures':
-                            '0':
-                                'name': 'brackets.sho-denizen-language'
-                        'end': '\\]'
-                        'endCaptures':
-                            '0':
-                                'name': 'brackets.sho-denizen-language'
-                        'name': 'custombrackets.sho-denizen-language'
-                    }
-                ]
+                'include': '#tags_rule'
             }
         ]
     },
     {
-        # Mark tags
-        'begin': '<'
-        'beginCaptures':
-            '0':
-                'name': 'tags.sho-denizen-language'
-        'end': '>'
-        'endCaptures':
-            '0':
-                'name': 'tags.sho-denizen-language'
-        'name': 'customtags.sho-denizen-language'
-
-        # Marks text inside tags
-        'patterns': [
-            {
-                # Marks '[' and ']' inside tags
-                'begin': '\\['
-                'beginCaptures':
-                    '0':
-                        'name': 'brackets.sho-denizen-language'
-                'end': '\\]'
-                'endCaptures':
-                    '0':
-                        'name': 'brackets.sho-denizen-language'
-                'name': 'custombrackets.sho-denizen-language'
-            }
-        ]
-    }
-
+        # Marks tags
+        'include': '#tags_rule'
+    },
     {
         # Else and Else If
         'match': '(\\} else {|\\} else if )'
@@ -146,3 +95,52 @@
         'name': 'customcomment.sho-denizen-language'
     }
 ]
+
+
+# The repository is a list of rules that can be referenced else where using include
+'repository':
+    # Mark tags
+    'tags_rule': {
+        # Mark tags
+        'begin': '<'
+        'beginCaptures':
+            '0':
+                'name': 'tags.sho-denizen-language'
+        'end': '>'
+        'endCaptures':
+            '0':
+                'name': 'tags.sho-denizen-language'
+        'name': 'raw.sho-denizen-language'
+
+        # Marks text inside tags
+        'patterns': [
+            # include itself to still highlight tag pairs inside tags
+            {
+                'include': '#tags_rule'
+            },
+            {
+                # Marks '[' and ']' inside tags
+                'include': '#brackets_rule'
+            }
+        ]
+    }
+    
+    # Mark square brackets
+    'brackets_rule': {
+        'begin': '\\['
+        'beginCaptures':
+            '0':
+                'name': 'brackets.sho-denizen-language'
+        'end': '\\]'
+        'endCaptures':
+            '0':
+                'name': 'brackets.sho-denizen-language'
+        'name': 'custombrackets.sho-denizen-language'
+
+        'patterns': [
+            # include tags to still highlight tag pairs inside brackets
+            {
+                'include': '#tags_rule'
+            }
+        ]
+    }
