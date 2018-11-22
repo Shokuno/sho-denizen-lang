@@ -44,14 +44,14 @@
         'include': '#variables_rule'
     },
     {
-        # Mark all command words proceeded by -
-        'match': '(- (\\^|)determine|- (\\^|)execute|- (\\^|)give|- (\\^|)teleport|- (\\^|)flag|- (\\^|)finish|- (^|)fail|\\- (\\^|)log|- (\\^|)new|- (\\^|)zap|- (\\^|)queue|- (\\^|)narrate|-  (\\^|)adjust|- (\\^|)inventory|- (\\^|)debug|- (\\^|)engage|- (\\^|)disengage|- (\\^|)lookclose|- (\\^|)pose|- (\\^|)queue|- (\\^|)wait|- (\\^|)take|- (\\^|)inject|- (\\^|)run|- (\\^|)trigger|- (\\^|)define|- (\\^|)chat)|- (\\^|)create)'
-        'name': 'command.core.denizen'
+        # Mark all normal command words proceeded by -
+        'match': '(- (\\^|)determine|- (\\^|)execute|- (\\^|)give|- (\\^|)teleport|- (\\^|)flag|- (\\^|)finish|- (^|)fail|\\- (\\^|)log|- (\\^|)new|- (\\^|)zap|- (\\^|)queue|- (\\^|)narrate|-  (\\^|)adjust|- (\\^|)inventory|- (\\^|)debug|- (\\^|)engage|- (\\^|)disengage|- (\\^|)lookclose|- (\\^|)pose|- (\\^|)queue|- (\\^|)wait|- (\\^|)take|- (\\^|)inject|- (\\^|)run|- (\\^|)trigger|- (\\^|)define|- (\\^|)chat|- (\\^|)create|- (\\^|)assigment)'
+        'name': 'command.core.sho-denizen-language'
     },
     {
         # Mark yaml
         'match': '(\\- (\\^|)yaml create id:|\\- (\\^|)yaml|\\id:)'
-        'name': 'command.yaml.create.denizen'
+        'name': 'command.yaml.create.sho-denizen-language'
     },
     {
         # Mark Strings (double quote)
