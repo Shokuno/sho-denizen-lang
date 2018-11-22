@@ -41,9 +41,8 @@
         'name': 'event.sho-denizen-language'
     },
     {
-        # Mark '<def[val]>' and %value%
-        'match': '(\\%.+?\\%|<def\\[[a-zA-Z0-9]+\\]>)'
-        'name': 'variable.sho-denizen-language'
+        # Mark variables
+        'include': '#variables_rule'
     },
     {
         # Mark all command keywords proceeded by -
@@ -68,9 +67,8 @@
         'name': 'string.quoted.double.sho-denizen-language'
         'patterns': [
             {
-                # Mark '<def[val]>' and %value%
-                'match': '(\\%.+?\\%|<def\\[[a-zA-Z0-9]+\\]>)'
-                'name': 'variable.sho-denizen-language'
+                # Mark variables
+                'include': '#variables_rule'
             },
             {
                 # Marks tags inside quotes
@@ -149,4 +147,10 @@
                 'include': '#tags_rule'
             }
         ]
+    }
+
+    # Mark variables
+    'variables_rule': {
+        'match': '(\\%.+?\\%|<def\\[[a-zA-Z0-9]+\\]>)'
+        'name': 'variable.sho-denizen-language'
     }
