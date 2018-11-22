@@ -10,8 +10,7 @@
     },
     {
         # Mark numbers
-        'match': '\\b(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))\\b'
-        'name': 'constant.numeric.sho-denizen-language'
+        'include': '#numeric_constants_rule'
     },
     {
         # Mark all 'SOMETHING:' statements'
@@ -45,14 +44,14 @@
         'include': '#variables_rule'
     },
     {
-        # Mark all command keywords proceeded by -
-        'match': '(- (\\^|)determine|- (\\^|)execute|- (\\^|)give|- (\\^|)teleport|- (\\^|)flag|- (\\^|)finish|- (^|)fail|\\- (\\^|)log|- (\\^|)new|- (\\^|)zap|- (\\^|)queue|- (\\^|)narrate|-  (\\^|)adjust|- (\\^|)inventory|- (\\^|)debug|- (\\^|)engage|- (\\^|)disengage|- (\\^|)lookclose|- (\\^|)pose|- (\\^|)queue|- (\\^|)wait|- (\\^|)take|- (\\^|)inject|- (\\^|)run|- (\\^|)trigger|- (\\^|)define|- (\\^|)chat)'
-        'name': 'command.core.denizen'
+        # Mark all normal command words proceeded by -
+        'match': '(- (\\^|)determine|- (\\^|)execute|- (\\^|)give|- (\\^|)teleport|- (\\^|)flag|- (\\^|)finish|- (^|)fail|\\- (\\^|)log|- (\\^|)new|- (\\^|)zap|- (\\^|)queue|- (\\^|)narrate|-  (\\^|)adjust|- (\\^|)inventory|- (\\^|)debug|- (\\^|)engage|- (\\^|)disengage|- (\\^|)lookclose|- (\\^|)pose|- (\\^|)queue|- (\\^|)wait|- (\\^|)take|- (\\^|)inject|- (\\^|)run|- (\\^|)trigger|- (\\^|)define|- (\\^|)chat|- (\\^|)create|- (\\^|)assignment|- (\\^|)announce)'
+        'name': 'command.core.sho-denizen-language'
     },
     {
         # Mark yaml
         'match': '(\\- (\\^|)yaml create id:|\\- (\\^|)yaml|\\id:)'
-        'name': 'command.yaml.create.denizen'
+        'name': 'command.yaml.create.sho-denizen-language'
     },
     {
         # Mark Strings (double quote)
@@ -81,18 +80,53 @@
         'include': '#tags_rule'
     },
     {
-        # Else and Else If
-        'match': '(\\} else {|\\} else if )'
-        'name': 'statement.else.denizen'
+        # NEW ( if 'conditions': 'then' ): Mark If, else if, choose, foreach, while, repeat, random, case
+        'match': '(- \\^|- )(if|else if|choose|foreach|while|repeat|random|case) {0,1}([^:{}\\n]*)(:)'
+        'captures':
+            '1':
+                'name': 'statement.if.sho-denizen-language'
+            '2':
+                'name': 'statement.if.sho-denizen-language'
+            '3':
+                'patterns':[
+                    {
+                        # Mark logical operators
+                        'include': '#logical_operators_rule'
+                    },
+                    {
+                        # Mark numbers
+                        'include': '#numeric_constants_rule'
+                    },
+                    {
+                        # Mark variables
+                        'include': '#variables_rule'
+                    },
+                    {
+                        # Marks tags inside quotes
+                        'include': '#tags_rule'
+                    }
+                ]
+            '4':
+                'name': 'statement.if.sho-denizen-language'
     },
     {
-        # If, foreach, random and all logical operators
-        'match': '(- (\\^|)if|- (\\^|)while|- (\\^|)repeat|- (\\^|)random|\\=\\=|\\!\\=|\\&\\&|\\|\\||\\&gt;\\s|\\&lt;\\s|\\{|\\}|- (\\^|)foreach)'
-        'name': 'statement.if.denizen'
+        # NEW ( - else: ): Mark else
+        'match': '- else:'
+        'name': 'statement.if.sho-denizen-language'
+    },
+    {
+        # OLD!! Else and Else If
+        'match': '(\\} else {|\\} else if )'
+        'name': 'statement.if.sho-denizen-language'
+    },
+    {
+        # OLD!! ( if 'conditions' { 'then' } ) If, foreach, random and all logical operators
+        'match': '- (\\^|)if|- (\\^|)while|- (\\^|)repeat|- (\\^|)random|{|}|- (\\^|)foreach'
+        'name': 'statement.if.sho-denizen-language'
     },
     {
         # Mark # line comments
-        'match': '^.*(#.*)'
+        'match': '(#.*)'
         'captures':
             '1':
                 'name': 'comment.line.number-sign.sho-denizen-language'
@@ -154,3 +188,15 @@
         'match': '(\\%.+?\\%|<def\\[[a-zA-Z0-9]+\\]>)'
         'name': 'variable.sho-denizen-language'
     }
+
+    # Mark logical operators
+    'logical_operators_rule': {
+        'match': '(<|>|\\!|\\=)\\=|\\|\\||\\&\\&| matches '
+        'name': 'statement.if.sho-denizen-language'
+    }
+
+    # Mark numeric constants
+    'numeric_constants_rule': {
+        'match': '\\s(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))\\s'
+        'name': 'constant.numeric.sho-denizen-language'
+    },
