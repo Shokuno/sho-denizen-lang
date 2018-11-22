@@ -14,7 +14,7 @@
     },
     {
         # Mark all 'SOMETHING:' statements'
-        'match': '(\\bchat\\b|\\bclick\\b|\\binteract\\b|\\bdamage\\b|\\bproximity\\b) (\\btrigger:)( (\\b\\w+\\b)|[\\w \'/]+|\\n)|(\\b[a-zA-Z]+:)(\\%.+?\\%|<def\\[[a-zA-Z0-9]+\\]>)|(\\b[a-zA-Z]+:)(([0-9]+)|([a-zA-Z]+| \\b\\w+\\b|[\\w \'/]+|\\n))|\\s+([0-9]+:)'
+        'match': '(\\bchat\\b|\\bclick\\b|\\binteract\\b|\\bdamage\\b|\\bproximity\\b) (\\btrigger:)( (\\b\\w+\\b)|[\\w \'/]+|\\n)|(\\b[a-zA-Z]+:)(\\%.+?\\%|<def\\[[a-zA-Z0-9]+\\]>)|(\\b[a-zA-Z]+:)(([0-9]+)|([a-zA-Z]+| \\b\\w+\\b|[\\w \'/]+|(?=<)|\\n))|\\s+([0-9]+:)'
         'captures':
             '1':
                 'name': 'run.sho-denizen-language'
