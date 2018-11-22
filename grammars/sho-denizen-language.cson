@@ -31,7 +31,7 @@
                 'name': 'constant.numeric.sho-denizen-language'
             '12':
                 'name': 'run.sho-denizen-language'
-    }
+    },
     {
         # Mark all 'on EVENT:' statements, Overwrites variable highlighting
         'match': '^\\s+(on \\b[a-z 0-9]+:\\n)'
