@@ -79,55 +79,51 @@
         # Marks tags
         'include': '#tags_rule'
     },
-#    {
-#        # OLD Else and Else If
-#        'match': '(\\} else {|\\} else if )'
-#        'name': 'statement.else.denizen'
-#    },
-#    {
-#        # OLD ( if 'conditions' { 'then' } ) If, foreach, random and all logical operators
-#        'match': '(- (\\^|)if|- (\\^|)while|- (\\^|)repeat|- (\\^|)random|\\=\\=|\\!\\=|\\&\\&|\\|\\||\\&gt;\\s|\\&lt;\\s|\\{|\\}|- (\\^|)foreach|- (\\^|)choose|- (\\^|)case)'
-#        'name': 'statement.if.denizen'
-#    },
     {
-        # NEW ( if 'conditions': 'then' ): Mark If, else if and all logical operators
-        'begin': '- (\^|)(if|else if)'
-        'beginCaptures':
-            '0':
+        # NEW ( if 'conditions': 'then' ): Mark If, else if, choose, foreach, while, repeat, random, case
+        'match': '(- \\^|- )(if|else if|choose|foreach|while|repeat|random|case) {0,1}([^:{}\\n]*)(:)'
+        'captures':
+            '1':
                 'name': 'statement.if.sho-denizen-language'
-        'end': '(:)'
-        'endCaptures':
-            '0':
+            '2':
                 'name': 'statement.if.sho-denizen-language'
-        'patterns': [
-            {
-                # Mark logical operators
-                'include': '#logical_operators_rule'
-            },
-            {
-                # Mark numbers
-                'include': '#numeric_constants_rule'
-            },
-            {
-                # Mark variables
-                'include': '#variables_rule'
-            },
-            {
-                # Marks tags inside quotes
-                'include': '#tags_rule'
-            }
-        ]
+            '3':
+                'patterns':[
+                    {
+                        # Mark logical operators
+                        'include': '#logical_operators_rule'
+                    },
+                    {
+                        # Mark numbers
+                        'include': '#numeric_constants_rule'
+                    },
+                    {
+                        # Mark variables
+                        'include': '#variables_rule'
+                    },
+                    {
+                        # Marks tags inside quotes
+                        'include': '#tags_rule'
+                    }
+                ]
+            '4':
+                'name': 'statement.if.sho-denizen-language'
     },
     {
         # NEW ( - else: ): Mark else
         'match': '- else:'
         'name': 'statement.if.sho-denizen-language'
     },
-#    {
-#        # NEW ( foreach 'list': ) foreach, while, choose
-#        'match': '(- (\\^|)if|- (\\^|)while|- (\\^|)repeat|- (\\^|)random|\\=\\=|\\!\\=|\\&\\&|\\|\\||\\&gt;\\s|\\&lt;\\s|\\{|\\}|- (\\^|)foreach|- (\\^|)choose|- (\\^|)case)'
-#        'name': 'statement.if.sho-denizen-language'
-#    },
+    {
+        # OLD!! Else and Else If
+        'match': '(\\} else {|\\} else if )'
+        'name': 'statement.if.sho-denizen-language'
+    },
+    {
+        # OLD!! ( if 'conditions' { 'then' } ) If, foreach, random and all logical operators
+        'match': '- (\\^|)if|- (\\^|)while|- (\\^|)repeat|- (\\^|)random|{|}|- (\\^|)foreach'
+        'name': 'statement.if.sho-denizen-language'
+    },
     {
         # Mark # line comments
         'match': '(#.*)'
@@ -201,6 +197,6 @@
 
     # Mark numeric constants
     'numeric_constants_rule': {
-        'match': '\\b(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))\\b'
+        'match': '\\s(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))\\s'
         'name': 'constant.numeric.sho-denizen-language'
     },
