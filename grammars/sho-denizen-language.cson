@@ -15,17 +15,23 @@
     },
     {
         # Mark all 'SOMETHING:' statements'
-        'match': '(\\bchat\\b|\\bclick\\b|\\binteract\\b|\\bdamage\\b|\\bproximity\\b) (\\btrigger:)((\\w+)| (\\b\\w+\\b)|[\\w \'/]+|\\n)|(\\b[a-zA-Z]+:)((\\w+)| (\\b\\w+\\b)|[\\w \'/]+|\\n)|(\\s+([0-9]+:))'
+        'match': '(\\bchat\\b|\\bclick\\b|\\binteract\\b|\\bdamage\\b|\\bproximity\\b) (\\btrigger:)( (\\b\\w+\\b)|[\\w \'/]+|\\n)|(\\b[a-zA-Z]+:)(\\%.+?\\%|<def\\[[a-zA-Z0-9]+\\]>)|(\\b[a-zA-Z]+:)(([0-9]+)|([a-zA-Z]+| \\b\\w+\\b|[\\w \'/]+|\\n))|\\s+([0-9]+:)'
         'captures':
             '1':
                 'name': 'run.sho-denizen-language'
             '2':
                 'name': 'run.sho-denizen-language'
-            '6':
+            '5':
                 'name': 'run.sho-denizen-language'
+            '6':
+                'name': 'variable.sho-denizen-language'
+            '7':
+                'name': 'run.sho-denizen-language'
+            '9':
+                'name': 'constant.numeric.sho-denizen-language'
             '11':
                 'name': 'run.sho-denizen-language'
-    }
+    },
     {
         # Mark all 'on EVENT:' statements, Overwrites variable highlighting
         'match': '^\\s+(on \\b[a-z 0-9]+:\\n)'
@@ -35,13 +41,12 @@
         'name': 'event.sho-denizen-language'
     },
     {
-        # Mark '<def[val]>' and %value%
-        'match': '(\\%.+?\\%|<def\\[[a-zA-Z0-9]+\\]>)'
-        'name': 'variable.sho-denizen-language'
+        # Mark variables
+        'include': '#variables_rule'
     },
     {
         # Mark all command keywords proceeded by -
-        'match': '(- (\\^|)determine|- (\\^|)yaml id:|- (\\^|)execute|- (\\^|)give|- (\\^|)teleport|- (\\^|)flag|- (\\^|)finish|- (^|)fail|\\- (\\^|)log|- (\\^|)new|- (\\^|)zap|- (\\^|)queue|- (\\^|)narrate|-  (\\^|)adjust|- (\\^|)inventory|- (\\^|)debug|- (\\^|)engage|- (\\^|)disengage|- (\\^|)lookclose|- (\\^|)pose|- (\\^|)queue|- (\\^|)wait|- (\\^|)take|- (\\^|)inject|- (\\^|)run|- (\\^|)trigger|- (\\^|)define)'
+        'match': '(- (\\^|)determine|- (\\^|)execute|- (\\^|)give|- (\\^|)teleport|- (\\^|)flag|- (\\^|)finish|- (^|)fail|\\- (\\^|)log|- (\\^|)new|- (\\^|)zap|- (\\^|)queue|- (\\^|)narrate|-  (\\^|)adjust|- (\\^|)inventory|- (\\^|)debug|- (\\^|)engage|- (\\^|)disengage|- (\\^|)lookclose|- (\\^|)pose|- (\\^|)queue|- (\\^|)wait|- (\\^|)take|- (\\^|)inject|- (\\^|)run|- (\\^|)trigger|- (\\^|)define|- (\\^|)chat)'
         'name': 'command.core.denizen'
     },
     {
@@ -62,71 +67,19 @@
         'name': 'string.quoted.double.sho-denizen-language'
         'patterns': [
             {
-                # Mark '<def[val]>' and %value%
-                'match': '(\\%.+?\\%|<def\\[[a-zA-Z0-9]+\\]>)'
-                'name': 'variable.sho-denizen-language'
+                # Mark variables
+                'include': '#variables_rule'
             },
             {
                 # Marks tags inside quotes
-                'begin': '<'
-                'beginCaptures':
-                    '0':
-                        'name': 'tags.sho-denizen-language'
-                'end': '>'
-                'endCaptures':
-                    '0':
-                        'name': 'tags.sho-denizen-language'
-
-                # sets the color of code inside the tags to grey
-                'name': 'raw.sho-denizen-language'
-
-                # Marks text inside tags
-                'patterns': [
-                    {
-                        # Marks '[' and ']' inside tags
-                        'begin': '\\['
-                        'beginCaptures':
-                            '0':
-                                'name': 'brackets.sho-denizen-language'
-                        'end': '\\]'
-                        'endCaptures':
-                            '0':
-                                'name': 'brackets.sho-denizen-language'
-                        'name': 'custombrackets.sho-denizen-language'
-                    }
-                ]
+                'include': '#tags_rule'
             }
         ]
     },
     {
-        # Mark tags
-        'begin': '<'
-        'beginCaptures':
-            '0':
-                'name': 'tags.sho-denizen-language'
-        'end': '>'
-        'endCaptures':
-            '0':
-                'name': 'tags.sho-denizen-language'
-        'name': 'customtags.sho-denizen-language'
-
-        # Marks text inside tags
-        'patterns': [
-            {
-                # Marks '[' and ']' inside tags
-                'begin': '\\['
-                'beginCaptures':
-                    '0':
-                        'name': 'brackets.sho-denizen-language'
-                'end': '\\]'
-                'endCaptures':
-                    '0':
-                        'name': 'brackets.sho-denizen-language'
-                'name': 'custombrackets.sho-denizen-language'
-            }
-        ]
-    }
-
+        # Marks tags
+        'include': '#tags_rule'
+    },
     {
         # Else and Else If
         'match': '(\\} else {|\\} else if )'
@@ -146,3 +99,58 @@
         'name': 'customcomment.sho-denizen-language'
     }
 ]
+
+
+# The repository is a list of rules that can be referenced else where using include
+'repository':
+    # Mark tags
+    'tags_rule': {
+        # Mark tags
+        'begin': '<'
+        'beginCaptures':
+            '0':
+                'name': 'tags.sho-denizen-language'
+        'end': '>'
+        'endCaptures':
+            '0':
+                'name': 'tags.sho-denizen-language'
+        'name': 'raw.sho-denizen-language'
+
+        # Marks text inside tags
+        'patterns': [
+            # include itself to still highlight tag pairs inside tags
+            {
+                'include': '#tags_rule'
+            },
+            {
+                # Marks '[' and ']' inside tags
+                'include': '#square_brackets_rule'
+            }
+        ]
+    }
+
+    # Mark square brackets
+    'square_brackets_rule': {
+        'begin': '\\['
+        'beginCaptures':
+            '0':
+                'name': 'brackets.sho-denizen-language'
+        'end': '\\]'
+        'endCaptures':
+            '0':
+                'name': 'brackets.sho-denizen-language'
+        'name': 'custombrackets.sho-denizen-language'
+
+        'patterns': [
+            # include tags to still highlight tag pairs inside brackets
+            {
+                'include': '#tags_rule'
+            }
+        ]
+    }
+
+    # Mark variables
+    'variables_rule': {
+        'match': '(\\%.+?\\%|<def\\[[a-zA-Z0-9]+\\]>)'
+        'name': 'variable.sho-denizen-language'
+    }
