@@ -15,7 +15,7 @@
     },
     {
         # Mark all 'SOMETHING:' statements'
-        'match': '(\\bchat\\b|\\bclick\\b|\\binteract\\b|\\bdamage\\b|\\bproximity\\b) (\\btrigger:)( (\\b\\w+\\b)|[\\w \'/]+|\\n)|(\\b[a-zA-Z]+:)(\\%.+?\\%|<def\\[[a-zA-Z0-9]+\\]>)|(\\b[a-zA-Z]+:)(([0-9]+)|(([a-zA-Z]+)| (\\b\\w+\\b)|[\\w \'/]+|\\n))|(\\s+([0-9]+:))'
+        'match': '(\\bchat\\b|\\bclick\\b|\\binteract\\b|\\bdamage\\b|\\bproximity\\b) (\\btrigger:)( (\\b\\w+\\b)|[\\w \'/]+|\\n)|(\\b[a-zA-Z]+:)(\\%.+?\\%|<def\\[[a-zA-Z0-9]+\\]>)|(\\b[a-zA-Z]+:)(([0-9]+)|([a-zA-Z]+| \\b\\w+\\b|[\\w \'/]+|\\n))|\\s+([0-9]+:)'
         'captures':
             '1':
                 'name': 'run.sho-denizen-language'
@@ -29,7 +29,7 @@
                 'name': 'run.sho-denizen-language'
             '9':
                 'name': 'constant.numeric.sho-denizen-language'
-            '12':
+            '11':
                 'name': 'run.sho-denizen-language'
     },
     {
@@ -46,7 +46,7 @@
     },
     {
         # Mark all command keywords proceeded by -
-        'match': '(- (\\^|)determine|- (\\^|)execute|- (\\^|)give|- (\\^|)teleport|- (\\^|)flag|- (\\^|)finish|- (^|)fail|\\- (\\^|)log|- (\\^|)new|- (\\^|)zap|- (\\^|)queue|- (\\^|)narrate|-  (\\^|)adjust|- (\\^|)inventory|- (\\^|)debug|- (\\^|)engage|- (\\^|)disengage|- (\\^|)lookclose|- (\\^|)pose|- (\\^|)queue|- (\\^|)wait|- (\\^|)take|- (\\^|)inject|- (\\^|)run|- (\\^|)trigger|- (\\^|)define)'
+        'match': '(- (\\^|)determine|- (\\^|)execute|- (\\^|)give|- (\\^|)teleport|- (\\^|)flag|- (\\^|)finish|- (^|)fail|\\- (\\^|)log|- (\\^|)new|- (\\^|)zap|- (\\^|)queue|- (\\^|)narrate|-  (\\^|)adjust|- (\\^|)inventory|- (\\^|)debug|- (\\^|)engage|- (\\^|)disengage|- (\\^|)lookclose|- (\\^|)pose|- (\\^|)queue|- (\\^|)wait|- (\\^|)take|- (\\^|)inject|- (\\^|)run|- (\\^|)trigger|- (\\^|)define)|- (\\^|)chat)'
         'name': 'command.core.denizen'
     },
     {
