@@ -14,7 +14,7 @@
     },
     {
         # Mark all 'SOMETHING:' statements'
-        'match': '(\\bchat\\b|\\bclick\\b|\\binteract\\b|\\bdamage\\b|\\bproximity\\b) (\\btrigger:)( (\\b\\w+\\b)|[\\w \'/]+|\\n)|(\\b[a-zA-Z]+:)(\\%.+?\\%|<def\\[[a-zA-Z0-9]+\\]>)|(\\b[a-zA-Z]+:)(([0-9]+)|([a-zA-Z]+| \\b\\w+\\b|[\\w \'/]+|\\n))|\\s+([0-9]+:)'
+        'match': '(\\bchat\\b|\\bclick\\b|\\binteract\\b|\\bdamage\\b|\\bproximity\\b) (\\btrigger:)( (\\b\\w+\\b)|[\\w \'/]+|\\n)|(\\b[a-z_A-Z]+:)(\\%.+?\\%|<def\\[[a-zA-Z0-9]+\\]>)|(\\b[a-z_A-Z]+:)(([0-9]+)|([a-zA-Z]+| \\b\\w+\\b|[\\w \'/]+|(?=<)|\\n))|\\s+([0-9]+:)'
         'captures':
             '1':
                 'name': 'run.sho-denizen-language'
@@ -33,19 +33,15 @@
     },
     {
         # Mark all 'on EVENT:' statements, Overwrites variable highlighting
-        'match': '^\\s+(on \\b[a-z 0-9]+:\\n)'
+        'match': '^\\s+(on \\b[a-zA-Z 0-9_]+:\\n)'
         'captures':
             '1':
                 'name': 'events.sho-denizen-language'
         'name': 'event.sho-denizen-language'
     },
     {
-        # Mark variables
-        'include': '#variables_rule'
-    },
-    {
         # Mark all normal command words proceeded by -
-        'match': '(- (\\^|)determine|- (\\^|)execute|- (\\^|)give|- (\\^|)teleport|- (\\^|)flag|- (\\^|)finish|- (^|)fail|\\- (\\^|)log|- (\\^|)new|- (\\^|)zap|- (\\^|)queue|- (\\^|)narrate|-  (\\^|)adjust|- (\\^|)inventory|- (\\^|)debug|- (\\^|)engage|- (\\^|)disengage|- (\\^|)lookclose|- (\\^|)pose|- (\\^|)queue|- (\\^|)wait|- (\\^|)take|- (\\^|)inject|- (\\^|)run|- (\\^|)trigger|- (\\^|)define|- (\\^|)chat|- (\\^|)create|- (\\^|)assignment|- (\\^|)announce)'
+        'match': '- (\\^|~|)(determine|execute|give|teleport|flag|finish|fail|log|new|zap|queue|narrate|adjust|inventory|debug|engage|disengage|lookclose|pose|queue|wait|take|inject|run|trigger|define|chat|create|assignment|announce|spawn|walk|remove)'
         'name': 'command.core.sho-denizen-language'
     },
     {
@@ -110,6 +106,10 @@
                 'name': 'statement.if.sho-denizen-language'
     },
     {
+        # Mark variables
+        'include': '#variables_rule'
+    },
+    {
         # NEW ( - else: ): Mark else
         'match': '- else:'
         'name': 'statement.if.sho-denizen-language'
@@ -152,8 +152,13 @@
 
         # Marks text inside tags
         'patterns': [
-            # include itself to still highlight tag pairs inside tags
             {
+                # Mark tag variables
+                'match': 'def\\[[a-zA-Z0-9]+\\]'
+                'name': 'variable.sho-denizen-language'
+            },
+            {
+                # include itself to still highlight tag pairs inside tags
                 'include': '#tags_rule'
             },
             {
@@ -183,10 +188,12 @@
         ]
     }
 
-    # Mark variables
+    # Mark '%VAR%' variables
     'variables_rule': {
-        'match': '(\\%.+?\\%|<def\\[[a-zA-Z0-9]+\\]>)'
-        'name': 'variable.sho-denizen-language'
+        'match': '(\\%.+?\\%)'
+        'captures':
+            '1':
+                'name': 'variable.sho-denizen-language'
     }
 
     # Mark logical operators
