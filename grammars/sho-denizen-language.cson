@@ -41,7 +41,7 @@
     },
     {
         # Mark all normal command words proceeded by -
-        'match': '- (\\^|~|)(determine|execute|give|teleport|flag|finish|fail|log|new|zap|queue|narrate|adjust|inventory|debug|engage|disengage|lookclose|pose|queue|wait|take|inject|run|trigger|define|chat|create|assignment|announce|spawn|walk|remove)'
+        'match': '- (\\^|~|)(determine|execute|give|teleport|flag|finish|fail|log|new|zap|queue|narrate|adjust|inventory|debug|engage|disengage|lookclose|pose|queue|wait|take|inject|run|trigger|define|chat|create|assignment|announce|spawn|walk|remove|anchor)'
         'name': 'command.core.sho-denizen-language'
     },
     {
